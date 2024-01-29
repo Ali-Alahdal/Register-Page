@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+
+    <!--Importing Boostrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+   
+   <!-- Some necessary style -->
+   <style>
+        body ,html
+        {
+            height: 100%;
+            
+        }
+        label{
+            
+            margin-top: 1%;
+        }
+
+    </style>
+</head>
+<body >
+    
+        <div class="container-fluid h-100 ">   
+
+            <!-- Grid System(Boostrap)-->
+            <div class="row h-100">
+
+
+                <!--The Left Side(Colum)-->
+                <div class="col bg-light h-100 justify-content-center  ">
+
+                        
+                        <h2 style="margin-top: 15%; margin-left: 12.5%;">Register </h2>
+
+                        <!-- Inputs And Labels -->
+                        <div class="d-inline-block me-2 " style="margin-top: 2%; margin-left: 12.5%;">
+                            <label class="d-block ">First Name</label>
+                            <input class="border border-primary border-1 rounded-3" type="text" name="" id="first">
+                        </div>
+                        <div class="d-inline-block" >
+                            <label  class="d-block">Last Name</label>
+                            <input class="border border-primary border-1 rounded-3" type="text" name="" id="last">
+                        </div>
+                        <div class="d-block mt-2" style="margin-left: 12.5%;">
+                            <label  class="d-block">Username</label>
+                            <input class="border border-primary border-1 rounded-3  w-75" type="text" name="" id="">
+                        </div>
+                        <div style="margin-left: 12.5%;">
+                            <label  class="d-block">Email</label>
+                            <input class="border border-primary border-1 rounded-3  w-75" type="email" name="" id="email">
+                        </div>
+                        <div style="margin-left: 12.5%;">
+                            <label  class="d-block">Password</label>
+                            <input  id="pass" class="border border-primary border-1 rounded-3  w-75" type="password" name="" id="">
+                        </div>
+                        <div style="margin-left: 12.5%;">
+                            <label  class="d-block">Confirm Password</label>
+                            <input  id="passCon" class="border border-primary border-1 rounded-3 w-75" type="password" name="" id="">
+                        </div>
+                        <!-- Check policies box(input)  -->
+                        <div class="mt-1" style="margin-left: 12.5%;">
+                            <input type="checkbox"  name="" id="">
+                            
+                            <span> I read the <a class="text-primary">policies</a> and i agree.</span>
+                        </div>
+                        <input onclick="Valdite()" class="btn btn-primary" type="button" value="Register" style="margin-top: 1%; margin-left: 12.5%;">
+                        <span id="error" class="text-danger d-block" style="margin-left: 12.5%;"></span>
+
+                        <!-- Password Requirements Section -->
+                        
+                        <div class="d-block mt-2" style=" margin-left: 12.5%; font-size: 13px;">
+                            <div>
+                                <span class="badge bg-primary rounded-pill ">1 </span> 
+                                <span class=""> Password Must Have Characters</span>
+                            </div>
+                            <span class="badge bg-primary rounded-pill ">2 </span>
+                            <span > At Least 5 Numbers and Characters </span>
+                        </div>
+
+                </div>
+
+                <!--  The Right Side(Colum) -->
+                <div class="col bg-primary h-100 justify-content-center text-light">
+                    <h3 style="margin-top: 30%; margin-left: 12.5%;">Register With : </h3>
+                    <div class="" style="margin-top: 3%; margin-left: 12.5%;">
+                        <button class="d-block bg-light border border-0 w-75 "><img  src="Images/google.webp" style="width:6% ; height: 30%;" alt="">   Google</button>
+                        <button class="d-block bg-light border border-0 mt-3 w-75"><img  src="Images/facebook.webp" style="width:6% ; height: 30%;" alt="">   Facebook</button>
+                        <button class="d-block bg-light border border-0 mt-3 w-75"><img class=""  src="Images/apple.png" style="width:6%  ; height: 30%;" alt="">   Apple</button>
+                        <button class="d-block bg-light border border-0 mt-3 w-75"><img class=""  src="Images/twitter.svg.png" style="width:6%  ; height: 30%;" alt="">  Twitter</button>
+                        <span> By login with  these methods you agree on our  <a class="text-light">policies</a></span>
+                    </div>
+                   
+                </div>  
+            </div>
+              
+        </div>
+
+
+     <!-- Using Javascript for Inputs Validation  -->
+    <script>
+        // this function calls when ever someone click login button 
+        function Valdite()
+        {
+            // Getting the value inside the inputs and error element
+            let er = document.getElementById("error");
+            let email = document.getElementById("email").value;
+            let pass = document.getElementById("pass").value;
+            let passCon = document.getElementById("passCon").value;
+            let first = document.getElementById("first").value;
+            let last = document.getElementById("last").value;
+            
+            //Checking if inputs are empty 
+            if(email !== ""  && pass !== "" && passCon !== "" )
+            {
+                //Checking if Passwords are Match
+                if(pass !== passCon)
+                {
+                    er.innerHTML = "Passwords Are Not Match!";
+                    return;
+                }else{
+                    //checking if the email was valida and return a response 
+                    if(validateEmail(email) ){
+                        console.log("Succced");
+                        er.innerHTML = "";
+            
+                    }else{
+                        er.innerHTML = "Email is Not Valid !!"
+                    }
+                }
+            }else{
+                er.innerHTML = "Inputs Can Not Be empty!"
+            }
+          
+        }  
+
+         //This function is checking if The email has a good chararcters 
+        function validateEmail(email) {
+            var re = /\S+@\S+\.\S+/;
+            return re.test(email);
+        }
+     
+    </script>
+
+
+    <!--Importing Boostrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
