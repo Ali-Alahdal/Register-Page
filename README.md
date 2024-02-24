@@ -4,6 +4,6 @@
 <a href="https://ali-alahdal.github.io/Register-Page/">View Page</a>
 
 
-<img src="/images/Register_Page" />
+<img src="/images/Register_Page.png" />
 
 
